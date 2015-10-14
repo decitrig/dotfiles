@@ -93,6 +93,12 @@
 
 (add-hook 'js2-mode-hook #'decitrig--init-js2-mode)
 
+(defun decitrig--init-json-mode ()
+  "Initialize 'json-mode' with my preferences"
+  (setq js-indent-level 2)
+  (setq indent-tabs-mode nil))
+(add-hook 'json-mode-hook #'decitrig--init-json-mode)
+
 (setenv "PATH" (mapconcat 'identity
 			  (list "/usr/local/bin"
 				(concat decitrig--goroot "bin")
