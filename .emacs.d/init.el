@@ -13,7 +13,6 @@
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file)
 
-(require 'auto-complete-config)
 (require 'flycheck)
 (require 'go-mode)
 (require 'google-c-style)
@@ -21,11 +20,13 @@
 (require 'multi-term)
 (require 'markdown-mode)
 (require 'web-mode)
+(require 'yasnippet)
 
 (ido-mode t)
-(ac-config-default)
 
 (require 'clang-format)
+
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;;; Go Setup
 (defvar decitrig--goroot "/usr/local/go/")
@@ -89,6 +90,9 @@
 (defun decitrig--init-js2-mode ()
   "Initialize 'js2-mode' with my preferences"
   (setq tab-width 2)
+  (setq fill-column 80)
+  (setq show-trailing-whitespace t)
+  (add-hook 'after-save-hook #'delete-trailing-whitespace)
   (setq indent-tabs-mode nil))
 
 (add-hook 'js2-mode-hook #'decitrig--init-js2-mode)
@@ -99,14 +103,26 @@
   (setq indent-tabs-mode nil))
 (add-hook 'json-mode-hook #'decitrig--init-json-mode)
 
+(defun decitrig--init-typescript-mode ()
+  "Initialize typescript-mdode"
+  (tide-setup)
+  (flycheck-mode +1)
+  (local-set-key (kbd "M-j") 'c-indent-new-comment-line)
+  ; (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (company-mode-on))
+(add-hook 'typescript-mode-hook #'decitrig--init-typescript-mode)
+
 (setenv "PATH" (mapconcat 'identity
 			  (list "/usr/local/bin"
 				(concat decitrig--goroot "bin")
 				(concat decitrig--gopath "bin")
+				"/Users/rwsims/.npm-packages/bin"
 				(getenv "PATH")) ":"))
 
 (add-to-list 'exec-path (concat decitrig--gopath "bin"))
 (add-to-list 'exec-path "/usr/local/bin")
+(add-to-list 'exec-path "/Users/rwsims/.npm-packages/bin")
 
 (provide 'init)
 ;;; init.el ends here

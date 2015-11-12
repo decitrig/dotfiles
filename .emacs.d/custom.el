@@ -16,18 +16,18 @@
  '(js2-basic-offset 2)
  '(js2-global-externs (quote ("module" "angular" "goog")))
  '(json-reformat:indent-width 2)
- '(menu-bar-mode nil)
- '(package-archives
-   (quote
-    (("gnu" . "http://elpa.gnu.org/packages/")
-     ("marmalade" . "http://marmalade-repo.org/packages/"))))
+ '(menu-bar-mode t)
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
+ '(typescript-indent-level 2)
  '(uniquify-after-kill-buffer-p t)
  '(uniquify-buffer-name-style (quote reverse) nil (uniquify))
  '(visible-bell nil)
- '(web-mode-markup-indent-offset 1))
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-enable-auto-expanding t)
+ '(web-mode-enable-current-element-highlight t)
+ '(web-mode-markup-indent-offset 0))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
