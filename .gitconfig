@@ -1,0 +1,4 @@
+[credential]
+	helper = cache --timeout=3600
+[alias]
+	st = status
