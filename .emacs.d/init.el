@@ -8,6 +8,10 @@
              '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
+(unless (package-installed-p 'yasnippet) (package-install 'yasnippet))
+(unless (package-installed-p 'google-c-style) (package-install 'google-c-style))
+(unless (package-installed-p 'company) (package-install 'company))
+
 (add-to-list 'load-path (concat user-emacs-directory "site-lisp"))
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
@@ -28,6 +32,8 @@
 
 (add-hook 'after-init-hook 'global-company-mode)
 
+(global-set-key (kbd "C-c m t") #'multi-term)
+
 ;;; Go Setup
 (defvar decitrig--goroot "/usr/local/go/")
 (setenv "GOROOT" decitrig--goroot)
@@ -44,10 +50,10 @@
 (add-hook 'go-mode-hook #'decitrig--init-go-mode)
 
 (add-to-list 'load-path (concat decitrig--gopath "src/github.com/dougm/goflymake"))
-(require 'go-flycheck)
+;;; (require 'go-flycheck)
 
 (add-to-list 'load-path (concat decitrig--gopath "src/github.com/nsf/gocode/emacs/"))
-(require 'go-autocomplete)
+;;; (require 'go-autocomplete)
 
 ;;; C++ Setup
 (defun decitrig--init-c-mode ()
