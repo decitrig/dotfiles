@@ -17,7 +17,7 @@
  '(json-reformat:indent-width 2)
  '(package-selected-packages
    (quote
-    (company clang-format magit multi-term google-c-style web-mode markdown-mode go-mode bison-mode flycheck flycheck-clang-tidy)))
+    (auto-complete company clang-format magit multi-term google-c-style web-mode markdown-mode go-mode bison-mode flycheck flycheck-clang-tidy)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(typescript-indent-level 2)

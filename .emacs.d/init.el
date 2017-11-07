@@ -15,6 +15,7 @@
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file)
 
+(require 'auto-complete-config)
 (require 'clang-format)
 (require 'company)
 (require 'flycheck)
@@ -27,6 +28,7 @@
 (require 'web-mode)
 
 (ido-mode t)
+(ac-config-default)
 
 (add-hook 'after-init-hook 'global-company-mode)
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
@@ -37,11 +39,8 @@
 (global-set-key (kbd "C-c g s") #'magit-status)
 
 ;;; Go Setup
-(defvar decitrig--goroot "/usr/local/go/")
-(setenv "GOROOT" decitrig--goroot)
-(defvar decitrig--gopath "/Users/rwsims/go/")
-(setenv "GOPATH" decitrig--gopath)
-
+(setq decitrig--goroot "/usr/local/bin/go/")
+(setq decitrig--gopath "~/go/")
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook #'gofmt-before-save)
 
@@ -51,11 +50,13 @@
   (setq tab-width 2))
 (add-hook 'go-mode-hook #'decitrig--init-go-mode)
 
-(add-to-list 'load-path (concat decitrig--gopath "src/github.com/dougm/goflymake"))
-;;; (require 'go-flycheck)
-
-(add-to-list 'load-path (concat decitrig--gopath "src/github.com/nsf/gocode/emacs/"))
-;;; (require 'go-autocomplete)
+(defun decitrig--require-go-package (path name)
+  (let ((abs (concat decitrig--gopath path)))
+    (if (file-exists-p abs)
+	(progn (add-to-list 'load-path abs)
+	       (require name)))))
+(decitrig--require-go-package "src/github.com/dougm/goflymake" 'go-flycheck)
+(decitrig--require-go-package "src/github.com/nsf/gocode/emacs/" 'go-autocomplete)
 
 (defun decitrig--clang-format-on-save ()
   (when (eq major-mode 'c++-mode)
