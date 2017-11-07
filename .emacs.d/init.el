@@ -60,13 +60,14 @@
 (defun decitrig--clang-format-on-save ()
   (when (eq major-mode 'c++-mode)
     (clang-format-buffer)))
+(add-hook 'after-save-hook 'decitrig--clang-format-on-save)
 
 ;;; C++ Setup
 (defun decitrig--init-c-mode ()
   "Initialize 'c-mode' with my preferences."
   (flycheck-mode)
-  (google-set-c-style)
-  (add-hook 'after-save-hook 'decitrig--clang-format-on-save))
+  (google-set-c-style))
+
 
 (add-hook 'c-mode-common-hook 'decitrig--init-c-mode)
 
