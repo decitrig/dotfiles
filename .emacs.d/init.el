@@ -33,6 +33,8 @@
 
 (global-set-key (kbd "C-c m t") #'multi-term)
 (global-set-key (kbd "C-c g r") #'ff-find-other-file)
+(global-set-key (kbd "C-c g f") #'clang-format-region)
+(global-set-key (kbd "C-c g s") #'magit-status)
 
 ;;; Go Setup
 (defvar decitrig--goroot "/usr/local/go/")
@@ -55,11 +57,16 @@
 (add-to-list 'load-path (concat decitrig--gopath "src/github.com/nsf/gocode/emacs/"))
 ;;; (require 'go-autocomplete)
 
+(defun decitrig--clang-format-on-save ()
+  (when (eq major-mode 'c++-mode)
+    (clang-format-buffer)))
+
 ;;; C++ Setup
 (defun decitrig--init-c-mode ()
   "Initialize 'c-mode' with my preferences."
   (flycheck-mode)
-  (google-set-c-style))
+  (google-set-c-style)
+  (add-hook 'after-save-hook 'decitrig--clang-format-on-save))
 
 (add-hook 'c-mode-common-hook 'decitrig--init-c-mode)
 
