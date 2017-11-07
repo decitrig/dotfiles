@@ -7,32 +7,32 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
-
-(unless (package-installed-p 'yasnippet) (package-install 'yasnippet))
-(unless (package-installed-p 'google-c-style) (package-install 'google-c-style))
-(unless (package-installed-p 'company) (package-install 'company))
+(package-refresh-contents)
+(package-install-selected-packages)
 
 (add-to-list 'load-path (concat user-emacs-directory "site-lisp"))
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file)
 
+(require 'clang-format)
+(require 'company)
 (require 'flycheck)
 (require 'go-mode)
 (require 'google-c-style)
 (require 'ido)
-(require 'multi-term)
+(require 'magit)
 (require 'markdown-mode)
+(require 'multi-term)
 (require 'web-mode)
-(require 'yasnippet)
 
 (ido-mode t)
 
-(require 'clang-format)
-
 (add-hook 'after-init-hook 'global-company-mode)
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 (global-set-key (kbd "C-c m t") #'multi-term)
+(global-set-key (kbd "C-c g r") #'ff-find-other-file)
 
 ;;; Go Setup
 (defvar decitrig--goroot "/usr/local/go/")

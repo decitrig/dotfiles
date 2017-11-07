@@ -17,8 +17,9 @@
  '(json-reformat:indent-width 2)
  '(package-selected-packages
    (quote
-    (google-c-style yasnippet web-mode markdown-mode go-mode bison-mode flycheck flycheck-clang-tidy)))
+    (company clang-format magit multi-term google-c-style web-mode markdown-mode go-mode bison-mode flycheck flycheck-clang-tidy)))
  '(scroll-bar-mode nil)
+ '(show-paren-mode t)
  '(typescript-indent-level 2)
  '(uniquify-after-kill-buffer-p t)
  '(visible-bell nil)
