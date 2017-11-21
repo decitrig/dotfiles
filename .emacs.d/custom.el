@@ -20,6 +20,7 @@
     (auto-complete company clang-format magit multi-term google-c-style web-mode markdown-mode go-mode bison-mode flycheck flycheck-clang-tidy)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
+ '(tool-bar-mode nil)
  '(typescript-indent-level 2)
  '(uniquify-after-kill-buffer-p t)
  '(visible-bell nil)
@@ -32,4 +33,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "DAMA" :family "Ubuntu Mono")))))
+ '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "nil" :family "Go Mono")))))
